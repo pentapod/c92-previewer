@@ -1,0 +1,247 @@
+@import "../node_modules/ress/ress.css";
+@import "_variable";
+@import "_font";
+@import "_code";
+@import "_counter";
+@import "_figure";
+
+:root
+  font: $body-font
+  line-height: $body-line-height
+  color: #000000
+  word-break: break-all
+
+strong
+  font-weight: 700
+
+h1, h2, h3, h4, h5, h6
+  margin: 0
+  padding: 0
+  border-width: 0
+  font-weight: 700
+  line-height: $header-line-height
+
+  // for pdf output
+  color: $color-header-red
+
+h1
+  //margin-bottom: 8mm
+  margin: 0
+  //font-size: 20pt
+  font-size: 24px
+h1:not(:first-child)
+  margin-top: 8mm
+
+h2
+  //margin-top: 5mm
+  //margin-bottom: 1mm
+  margin: 12px 0 6px 0
+  //font-size: 13pt
+  font-size: 17px
+  //border-bottom: 0.5mm solid $color-bg-beige
+  border-bottom: 0.5px solid $color-bg-beige
+
+h3
+  //margin-top: 5mm
+  //margin-bottom: 1mm
+  margin: 8px 0 8px 0
+  //font-size: 10pt
+  font-size: 13px
+
+h4
+  //margin-top: 3mm
+  margin: 0 0 8px 0
+  //font-size: 10pt
+  font-size: 13px
+
+p
+  margin: 0 0 8px 0
+  text-align: justify
+  text-indent: 1em
+
+hr
+  border: 0.5mm solid $color-bg-beige
+  margin: 8px 0
+
+a, a:hover, a:focus, a:visited
+  color: $color-link-blue
+  text-decoration: underline
+
+.clearfix:before
+  content: " "
+  display: table
+  clear: both
+
+code, kbd, pre, samp
+  font-family: $code-font-family
+
+figure
+  margin: 0
+
+img:not(.emoji)
+  display: block
+  max-width: 100%
+  margin: $image-margin auto
+  border-radius: 2px
+
+table
+  display: table
+  max-width: 100%
+  margin: $image-margin auto
+  border-collapse: collapse
+  th:first-child
+    text-align: right
+  tr.header
+    th
+      text-align: center
+  th, td
+    padding: 1mm 1mm 1mm 0
+    &:first-child
+      padding-left: 1mm
+    background-color: transparent
+    border: 0
+    border-top: 0.5mm solid $color-header-red
+    border-bottom: 0.5mm solid $color-header-red
+
+code
+  padding: 0
+
+pre
+  position: relative
+  padding: .4em 0 .4em .8em
+  margin: .8em 0
+  border: 0
+  border-radius: 0.2em
+  background-color: $color-bg-beige
+  font: $pre-font
+  line-height: $pre-line-height
+  white-space: pre-wrap
+  tab-size: 4
+  box-decoration-break: clone
+
+*:not(pre) > code
+  color: #000
+  font-weight: 700
+  margin: 0 0.2em
+  padding: 0.1em 0.5em
+  border: 0
+  border-radius: 0.2em
+  background-color: $color-bg-beige
+
+nav#toc
+  ol
+    padding: 0
+
+  li
+    list-style-type: none
+    margin: 16px 0
+
+  a
+    display: flex
+    text-decoration: none
+    color: inherit
+
+  .title
+    flex-grow: 1
+
+  h4
+    font-size: 16px
+    margin-bottom: 4px
+
+  .author
+    font-size: 12px
+
+article.font_awesome
+  .flex-container
+    display: flex
+    flex-wrap: wrap
+
+  .item
+    background: #a09c8d
+    color: white
+    margin: 0.5px
+    padding: .2rem .1rem
+    text-align: center
+    min-width: 3.5rem
+    //flex-basis: 2rem
+    flex-grow: 1
+
+  .icon
+    font-size: 1.6rem
+    line-height: 1.9rem
+    display: inline-block
+
+  i.fa
+    margin: 0 .2rem
+
+  .comment
+    font-size: 6px
+    line-height: .9
+    letter-spacing: -0.02rem
+    //word-break: normal
+
+section#profile
+  .author
+    display: flex
+    margin: 8px 0
+    img
+      margin: 0 10px 8px 0
+
+  .author.inverse
+    flex-direction: row-reverse
+    img
+      margin: 0 0 8px 10px
+
+  img
+    width: 60px
+    height: 60px
+    border-radius: 30px
+
+  .profile
+    flex-grow: 1
+    h4
+      display: inline-block
+      margin-bottom: 4px
+
+section#colophon
+  font-weight: 400
+  position: relative
+
+  h2
+    border: 0
+
+  ul.editions
+    padding: 0
+    list-style: none
+    time
+      display: inline-block
+      width: 10em
+
+  .title
+    color: #000000
+
+  table.info
+    margin: 0
+    width: 100%
+    border-top: 2px solid #000000
+    border-bottom: 1px solid #000000
+    td
+      vertical-align: top
+      border: 0
+      padding-left: 0
+
+  .download-pass
+    position: absolute
+    right: 0
+    bottom: 0
+    padding: 0.1em 0.5em
+    font-weight: 700
+    color: #ffffff
+    background-color: #000000
+    border-radius: 0.2em
+
+    // for pdf output
+    display: none
+
+@import '_page'
+
