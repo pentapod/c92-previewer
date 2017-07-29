@@ -1,18 +1,23 @@
-@import "../node_modules/ress/ress.css";
-@import "_variable";
-@import "_font";
-@import "_code";
-@import "_counter";
-@import "_figure";
+@charset "UTF-8"
+
+@import "../node_modules/ress/ress.css"
+@import "_variable"
+@import "_font"
 
 :root
   font: $body-font
   line-height: $body-line-height
   color: #000000
-  word-break: break-all
+  word-break: normal
+  line-break: strict
+  overflow-wrap: break-word
+  // letter-spacing: 0.05em
+  // font-feature-settings: 'palt', 'pwid'
 
 strong
-  font-weight: 700
+  font-weight: 800
+  margin: 0 .2rem
+  letter-spacing: .015rem
 
 h1, h2, h3, h4, h5, h6
   margin: 0
@@ -24,35 +29,28 @@ h1, h2, h3, h4, h5, h6
   // for pdf output
   color: $color-header-red
 
+h1, h2, h3
+  font-feature-settings: 'palt', 'pwid'
+
 h1
   //margin-bottom: 8mm
   margin: 0
-  //font-size: 20pt
-  font-size: 24px
-h1:not(:first-child)
-  margin-top: 8mm
+  font-size: 28pt
 
 h2
-  //margin-top: 5mm
-  //margin-bottom: 1mm
   margin: 12px 0 6px 0
-  //font-size: 13pt
-  font-size: 17px
-  //border-bottom: 0.5mm solid $color-bg-beige
-  border-bottom: 0.5px solid $color-bg-beige
+  font-size: 17pt
 
 h3
   //margin-top: 5mm
   //margin-bottom: 1mm
-  margin: 8px 0 8px 0
-  //font-size: 10pt
-  font-size: 13px
+  margin: 16px 0 8px 0
+  font-size: 14pt
 
 h4
   //margin-top: 3mm
   margin: 0 0 8px 0
-  //font-size: 10pt
-  font-size: 13px
+  font-size: 10pt
 
 p
   margin: 0 0 8px 0
@@ -73,10 +71,26 @@ a, a:hover, a:focus, a:visited
   clear: both
 
 code, kbd, pre, samp
+  font-feature-settings: normal
+  letter-spacing: 0
   font-family: $code-font-family
 
-figure
+dt, dd
   margin: 0
+  display: inline
+
+dd + dt::before
+  content: '\A'
+  white-space: pre
+
+figure
+  text-align: center
+  img
+    margin: ($image-margin / 2) 0
+  figcaption
+    margin: auto
+    width: 80%
+    // font-size: 90%
 
 img:not(.emoji)
   display: block
@@ -88,6 +102,7 @@ table
   display: table
   max-width: 100%
   margin: $image-margin auto
+  border-color: $color-header-red
   border-collapse: collapse
   th:first-child
     text-align: right
@@ -100,85 +115,159 @@ table
       padding-left: 1mm
     background-color: transparent
     border: 0
-    border-top: 0.5mm solid $color-header-red
-    border-bottom: 0.5mm solid $color-header-red
+    border-top: 0.5mm solid
+    border-bottom: 0.5mm solid
 
 code
   padding: 0
 
 pre
   position: relative
-  padding: .4em 0 .4em .8em
+  padding: .8em 0 .8em 1em
   margin: .8em 0
   border: 0
-  border-radius: 0.2em
+  border-left: 3px solid
   background-color: $color-bg-beige
   font: $pre-font
   line-height: $pre-line-height
   white-space: pre-wrap
   tab-size: 4
   box-decoration-break: clone
+  word-break: break-all
 
 *:not(pre) > code
   color: #000
-  font-weight: 700
+  font-weight: 600
   margin: 0 0.2em
   padding: 0.1em 0.5em
   border: 0
   border-radius: 0.2em
   background-color: $color-bg-beige
 
+span.footnote
+  float: footnote
+  word-break: break-all
+
 nav#toc
   ol
     padding: 0
-
   li
     list-style-type: none
-    margin: 16px 0
-
+    margin: .4rem 0
   a
     display: flex
+    font-size: 12px
+    font-feature-settings: 'palt'
     text-decoration: none
     color: inherit
 
   .title
     flex-grow: 1
+    small
+      display: block
+      font-size: 9px
+      line-height: 100%
 
-  h4
-    font-size: 16px
-    margin-bottom: 4px
+  li.chapter
+    margin: 2rem 0
 
-  .author
-    font-size: 12px
+    & > a
+      display: inline-flex
+      color: #fff
+      font-family: $heading-font-family
+      font-size: 18px
+      font-weight: 600
+      line-height: 24px
+      background-color: $color-header-red
+      padding: 8px 8px 0 48px
+      margin-left: -48px
 
-article.font_awesome
-  .flex-container
+    ol
+      margin-left: .5rem
+
+aside.cssdef
+  margin: 2rem 10px 2rem 0
+  background-color: #eeeeee
+  line-height: 1.5
+  border: 2px solid
+  box-shadow: 8px 8px 0 -2px #fff, 8px 8px 0 0px #000
+
+  .cssdef-region
+    position: relative
+    padding: 0 12px 12px 12px
     display: flex
-    flex-wrap: wrap
+    flex-direction: column
 
-  .item
-    background: #a09c8d
-    color: white
-    margin: 0.5px
-    padding: .2rem .1rem
-    text-align: center
-    min-width: 3.5rem
-    //flex-basis: 2rem
-    flex-grow: 1
+    &:not(:first-child)
+      border-top: 2px solid
 
-  .icon
-    font-size: 1.6rem
-    line-height: 1.9rem
+  h3
     display: inline-block
+    //font-family: $code-font-family
+    font-size: 18px
+    font-weight: 500
+    letter-spacing: .03rem
+    background-color: #000
+    color: #fff
+    margin: -2px .1rem 8px 0
+    padding: .4rem .7rem .4rem .7rem
 
-  i.fa
-    margin: 0 .2rem
+    &:first-child
+      padding-left: 18px
+      margin-left: -16px
 
-  .comment
-    font-size: 6px
-    line-height: .9
-    letter-spacing: -0.02rem
-    //word-break: normal
+  p
+    text-indent: 0
+    line-break: loose
+
+  code
+    background-color: #fff
+    word-break: break-all
+
+  .desc
+    border-top: 2px solid
+    margin-top: 1rem
+    padding-top: .4rem
+
+  .desc p:last-child,
+  .desc dl:last-child
+    margin-bottom: 0
+
+  .value::before
+    content: '値: '
+    font-weight: 700
+  .style::before
+    content: 'スタイル: '
+    font-weight: 700
+  .initial::before
+    content: '初期値: '
+    font-weight: 700
+
+section.chapter,
+nav#toc
+  h1, h2
+    font-family: $heading-font-family
+
+  h1
+    display: inline-block
+    color: #fff
+    background-color: $color-header-red
+    background-image: url(assets/pattern.png)
+    background-repeat: repeat
+    background-size: 80px
+    background-position: right bottom
+    padding: 176px 70px 48px 10000px
+    margin-left: -10000px
+    font-weight: 600
+
+  h2
+    margin: 12px 0 12px 0
+    padding-right: 4px
+    display: inline-block
+    font-size: 24pt
+    line-height: 38px
+    border-bottom: 6px solid $color-header-red
+    text-shadow: 1px 1px #ffffff
 
 section#profile
   .author
@@ -241,7 +330,8 @@ section#colophon
     border-radius: 0.2em
 
     // for pdf output
-    display: none
+    // display: none
 
+@import "_code"
+@import "_counter"
 @import '_page'
-
